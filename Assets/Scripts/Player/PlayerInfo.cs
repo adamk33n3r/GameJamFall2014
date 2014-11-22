@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerSettings : MonoBehaviour {
+public class PlayerInfo : MonoBehaviour {
     public bool controlsEnabled = true;
+    public int flashlightPower = 1000;
 }

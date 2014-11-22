@@ -7,8 +7,12 @@ public class Startup : MonoBehaviour {
     public GameObject wallPrefab;
     public GameObject floorPrefab;
 
+    public Color ambientColor;
+
 	// Use this for initialization
 	void Start () {
+//        Random.seed = Time.time;
+        RenderSettings.ambientLight = ambientColor;
         this.LoadLevel("Level1");
 	}
 

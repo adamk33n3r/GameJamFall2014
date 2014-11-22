@@ -3,15 +3,17 @@ using System.Collections;
 
 public class UpdateInfo : MonoBehaviour {
 
-    private GameObject player;
+    private Player player;
+    private TextMesh text;
 
 	// Use this for initialization
 	void Start () {
-        this.player = GameObject.FindGameObjectWithTag("Player");
+        this.player = this.transform.parent.GetComponent<Player>();
+        this.text = this.GetComponent<TextMesh>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        this.guiText.text = string.Format("Position: {0}, {1}, {2}", this.player.transform.position.x, this.player.transform.position.y, this.player.transform.position.z);
+        this.text.text = string.Format("Flashlight: {0}", this.player.flashlightPower());
 	}
 }

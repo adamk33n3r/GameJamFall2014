@@ -2,20 +2,50 @@
 using System.Collections;
 
 public class FlashlightController : MonoBehaviour {
+    public float flashlightDist = 7;
+    public LayerMask layerMask, layerMask2;
+
     private Transform flashlight;
     private bool controlsEnabled;
+    private Player player;
+
+    private bool flashlightOn = false;
 
     void Start() {
         this.flashlight = this.transform.FindChild("Flashlight");
-        this.controlsEnabled = this.GetComponent<PlayerSettings>().controlsEnabled;
+        this.controlsEnabled = this.GetComponent<PlayerInfo>().controlsEnabled;
+        this.player = this.GetComponent<Player>();
     }
     
     // Update is called once per frame
 	void Update () {
-        this.controlsEnabled = this.GetComponent<PlayerSettings>().controlsEnabled;
-        if (this.controlsEnabled)
+        this.controlsEnabled = this.GetComponent<PlayerInfo>().controlsEnabled;
+        if (this.controlsEnabled) {
+            if (Input.GetAxis("Xbox360ControllerTriggers") < 0) {
+                this.flashlightOn = true;
+            } else {
+                this.flashlightOn = false;
+            }
             Point ();
+        }
 	}
+
+    void FixedUpdate() {
+        if (this.flashlightOn && this.player.flashlightPower() > 0) {
+            if (!Physics.Raycast(this.transform.position, this.flashlight.transform.forward, this.flashlightDist, this.layerMask2)) {
+                RaycastHit[] hits = Physics.RaycastAll (this.transform.position, this.flashlight.transform.forward, this.flashlightDist, this.layerMask);
+                if (hits.Length > 0) {
+                    foreach (RaycastHit hit in hits) {
+                        hit.transform.SendMessage("HitByRaycast", this.gameObject, SendMessageOptions.DontRequireReceiver);
+                    }
+                }
+            }
+            this.flashlight.gameObject.SetActive(true);
+            this.player.decreaseFlashlightPower();
+        } else {
+            this.flashlight.gameObject.SetActive(false);
+        }
+    }
 
     void Point() {
         float hor = Input.GetAxis("Xbox360ControllerRightX");

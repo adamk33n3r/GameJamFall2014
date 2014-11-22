@@ -8,7 +8,7 @@
 		Cull Off
 		LOD 200
 		CGPROGRAM
-		#pragma surface surf Lambert alpha
+		#pragma surface surf TwoSided alpha
 		sampler2D _MainTex;
 		fixed4 _Color;
 		struct Input {
