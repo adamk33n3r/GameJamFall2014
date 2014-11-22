@@ -46,7 +46,7 @@ QualitySettings:
     excludedTargetPlatforms: []
   - serializedVersion: 2
     name: Simple
-    pixelLightCount: 1
+    pixelLightCount: 5
     shadows: 0
     shadowResolution: 1
     shadowProjection: 1

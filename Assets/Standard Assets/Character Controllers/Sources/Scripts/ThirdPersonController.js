@@ -2,6 +2,7 @@
 // Require a character controller to be attached to the same game object
 @script RequireComponent(CharacterController)
 
+public var mainCamera : Camera;
 public var idleAnimation : AnimationClip;
 public var walkAnimation : AnimationClip;
 public var runAnimation : AnimationClip;
@@ -359,8 +360,8 @@ function Update() {
 	// Set rotation to the move direction
 	if (IsGrounded())
 	{
-		
 		transform.rotation = Quaternion.LookRotation(moveDirection);
+		transform.LookAt(Camera.main.transform.position, Vector3.up);
 			
 	}	
 	else
