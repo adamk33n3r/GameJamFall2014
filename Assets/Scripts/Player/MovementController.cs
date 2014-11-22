@@ -40,7 +40,7 @@ public class MovementController : MonoBehaviour {
                     //                this.sprite.transform.position = new Vector3(this.sprite.transform.position.x, this.sprite.transform.position.y + this.bob * Time.deltaTime, this.sprite.transform.position.z);
                     //                this.bob++;
                     //                this.bob = -this.bob;
-                    this.vSpeed = this.jumpSpeed;
+//                    this.vSpeed = this.jumpSpeed;
                 } else {
                     this.vSpeed = 0f;
                 }

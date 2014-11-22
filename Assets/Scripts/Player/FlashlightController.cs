@@ -17,7 +17,6 @@ public class FlashlightController : MonoBehaviour {
         this.player = this.GetComponent<Player>();
     }
     
-    // Update is called once per frame
 	void Update () {
         this.controlsEnabled = this.GetComponent<PlayerInfo>().controlsEnabled;
         if (this.controlsEnabled) {
@@ -32,18 +31,25 @@ public class FlashlightController : MonoBehaviour {
 
     void FixedUpdate() {
         if (this.flashlightOn && this.player.flashlightPower() > 0) {
-            if (!Physics.Raycast(this.transform.position, this.flashlight.transform.forward, this.flashlightDist, this.layerMask2)) {
-                RaycastHit[] hits = Physics.RaycastAll (this.transform.position, this.flashlight.transform.forward, this.flashlightDist, this.layerMask);
-                if (hits.Length > 0) {
-                    foreach (RaycastHit hit in hits) {
-                        hit.transform.SendMessage("HitByRaycast", this.gameObject, SendMessageOptions.DontRequireReceiver);
-                    }
-                }
-            }
+            CastRays();
             this.flashlight.gameObject.SetActive(true);
             this.player.decreaseFlashlightPower();
         } else {
             this.flashlight.gameObject.SetActive(false);
+        }
+    }
+
+    void CastRays() {
+        RaycastHit hitt;
+        if (!Physics.Raycast(this.transform.position, this.flashlight.transform.forward, out hitt, this.flashlightDist, this.layerMask2)) {
+            RaycastHit[] hits = Physics.RaycastAll (this.transform.position, this.flashlight.transform.forward, this.flashlightDist, this.layerMask);
+            if (hits.Length > 0) {
+                foreach (RaycastHit hit in hits) {
+                    hit.transform.SendMessage("HitByRaycast", this.gameObject, SendMessageOptions.DontRequireReceiver);
+                }
+            }
+        } else {
+            Debug.Log (hitt.transform.name);
         }
     }
 

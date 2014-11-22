@@ -148,7 +148,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400000}
@@ -204,9 +204,9 @@ Light:
   serializedVersion: 3
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Intensity: 5
   m_Range: 13
-  m_SpotAngle: 60
+  m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
     m_Bits: 2048
   layerMask2:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294961151
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,6 +319,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08731acd24e7d948bc3c62a56f7dd9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bobbingCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1

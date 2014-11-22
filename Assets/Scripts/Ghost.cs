@@ -55,6 +55,6 @@ public class Ghost : MonoBehaviour {
     void HitByRaycast(GameObject source) {
         this.target = source;
         this.changeState = this.angry = this.shined = this.moving = true;
-//        Debug.Log("OUCH! THE LIGHT!!!!");
+        Debug.Log("OUCH! THE LIGHT!!!!");
     }
 }

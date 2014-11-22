@@ -8,6 +8,7 @@ public class CameraTracking : MonoBehaviour {
     private Vector3 angle;
     public float cameraAngle = 50f;
     public float cameraDistance = 30f;
+    public float maxZoomDistance = 15f;
     public bool zoom = true;
 
 	// Use this for initialization
@@ -29,7 +30,7 @@ public class CameraTracking : MonoBehaviour {
             Mesh mesh = new Mesh();
             mesh.vertices = (from player in this.players select player.transform.position).ToArray();
             float dist = Vector3.Distance(mesh.bounds.min, mesh.bounds.max);
-            this.cameraDistance = Mathf.Max (dist, 10);
+            this.cameraDistance = Mathf.Max (dist, maxZoomDistance);
         } else {
             this.cameraDistance = 30f;
         }
