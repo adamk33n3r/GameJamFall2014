@@ -2,17 +2,18 @@
 using System.Collections;
 
 public class FlashlightController : MonoBehaviour {
-    public bool enableControls = true;
-
     private Transform flashlight;
+    private bool controlsEnabled;
 
     void Start() {
         this.flashlight = this.transform.FindChild("Flashlight");
+        this.controlsEnabled = this.GetComponent<PlayerSettings>().controlsEnabled;
     }
     
     // Update is called once per frame
 	void Update () {
-        if (this.enableControls)
+        this.controlsEnabled = this.GetComponent<PlayerSettings>().controlsEnabled;
+        if (this.controlsEnabled)
             Point ();
 	}
 
