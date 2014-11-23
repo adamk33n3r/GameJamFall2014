@@ -137,7 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 100000, guid: cc8423b80a2d3544fbaa6305e35160ea, type: 2}
   floorPrefab: {fileID: 100000, guid: ad6be9a4533753f4689b0e800fab1b6e, type: 2}
-  lamp: {fileID: 100000, guid: d44e9e0d29152e64faa3f0b44a0cf27c, type: 2}
+  lampPrefab: {fileID: 100000, guid: d44e9e0d29152e64faa3f0b44a0cf27c, type: 2}
+  buttonPrefab: {fileID: 100000, guid: 72450bc2343c42d469a9d12fc46e810e, type: 2}
   ambientColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -181,7 +182,9 @@ MonoBehaviour:
   itemsToSpawn:
   - {fileID: 100010, guid: c7b6b7914e6fb31489ced15ebd920b34, type: 2}
   - {fileID: 100006, guid: 0ce48e0d625d38c45a47445338d29884, type: 2}
-  priorities: 0100000001000000
+  priorities:
+  - 1
+  - .200000003
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

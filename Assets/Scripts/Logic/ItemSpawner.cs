@@ -4,7 +4,7 @@ using System.Collections;
 public class ItemSpawner : MonoBehaviour {
 
     public GameObject[] itemsToSpawn;
-    public int[] priorities;
+    public float[] priorities;
 
     private GameSettings settings;
 
@@ -12,19 +12,17 @@ public class ItemSpawner : MonoBehaviour {
         this.settings = GameObject.FindObjectOfType<GameSettings>();
         InvokeRepeating("Attempt", 2, 10);
     }
-	
-	void Update () {
-	}
 
     void Attempt() {
-        GameObject itemToSpawn = this.itemsToSpawn[Random.Range(1, this.itemsToSpawn.Length)];
+        int randIdx = Random.Range(0, this.itemsToSpawn.Length);
+        GameObject itemToSpawn = this.itemsToSpawn[randIdx];
         int ranX, ranY;
         do {
             ranX = Random.Range (0, this.settings.mapSizeX);
             ranY = Random.Range (0, this.settings.mapSizeY);
         } while (this.settings.GetMap()[ranX, ranY]);
-        Debug.Log(string.Format("Found location at {0}, {1}", ranX, ranY));
-        if (Random.Range (0, 1) <= 25) {
+        if (Random.Range (0, 1) <= this.priorities[randIdx] * 100) {
+            Debug.Log(string.Format("Found location for {2} at {0}, {1}", ranX, ranY, itemToSpawn.name));
             GameObject item = Instantiate(itemToSpawn) as GameObject;
             item.transform.position = new Vector3(ranX*4+2, 2, 36 - ranY*4);
         }

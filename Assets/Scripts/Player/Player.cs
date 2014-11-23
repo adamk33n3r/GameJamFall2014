@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-    public LayerMask layerMask;
+    public LayerMask deathLayer;
+    public LayerMask buttonLayer;
     private Transform flashlight;
     private PlayerInfo playerSettings;
     private GameSettings gameSettings;
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour {
     }
 	
 	void FixedUpdate () {
-        if (Physics.CheckSphere(this.transform.position, 1, this.layerMask)) {
+        if (Physics.CheckSphere(this.transform.position, 1, this.deathLayer)) {
 //            this.playerSettings.controlsEnabled = false;
         }
 	}
@@ -65,5 +66,9 @@ public class Player : MonoBehaviour {
     
     private void transitionAmbientDown() {
         this.gameSettings.setAmbient(Color.Lerp (this.gameSettings.getAmbient(), this.oldColor, Time.deltaTime*2));
+    }
+
+    public bool OnButton () {
+        return Physics.CheckSphere(this.transform.position, 2, buttonLayer);
     }
 }

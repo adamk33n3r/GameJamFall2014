@@ -6,7 +6,8 @@ public class Startup : MonoBehaviour {
 
     public GameObject wallPrefab;
     public GameObject floorPrefab;
-    public GameObject lamp;
+    public GameObject lampPrefab;
+    public GameObject buttonPrefab;
 
     public Color ambientColor;
 
@@ -20,13 +21,14 @@ public class Startup : MonoBehaviour {
         if (!this.LoadLevel("Level1")) {
             Debug.Log ("Couldn't load level");
         }
+        PlaceButtons();
         SetUpLights();
 	}
 
     private void SetUpLights() {
-        for (int i = 0; i < 10; i++) {
-            Vector3 randPos = new Vector3(Random.Range (0,40), 10, Random.Range (0,40));
-            GameObject lamp = Instantiate(this.lamp) as GameObject;
+        for (int i = 0; i < (this.settings.mapSizeX * this.settings.mapSizeY) / 4; i++) {
+            Vector3 randPos = new Vector3(Random.Range (0,this.settings.mapSizeX*4), 10, Random.Range (0,this.settings.mapSizeY*4));
+            GameObject lamp = Instantiate(this.lampPrefab) as GameObject;
             lamp.transform.position = randPos;
             StartCoroutine(StartSwinging(lamp));
         }
@@ -37,9 +39,21 @@ public class Startup : MonoBehaviour {
         lamp.GetComponent<Animator>().SetTrigger("Swing");
     }
 
+    private void PlaceButtons() {
+        for (int times = 0; times < this.settings.GetPlayerCount(); times++) {
+            GameObject btn = Instantiate(this.buttonPrefab) as GameObject;
+            int ranX, ranY;
+            do {
+                ranX = Random.Range (0, this.settings.mapSizeX);
+                ranY = Random.Range (0, this.settings.mapSizeY);
+            } while (this.settings.GetMap()[ranX, ranY]);
+            btn.transform.position = new Vector3(ranX*4+2, 0, 36 - ranY*4);
+        }
+    }
+
     private bool LoadLevel(string fileName) {
-        for (int row = 0; row < 10; row++) {
-            for (int col = 0; col < 20; col++) {
+        for (int row = 0; row < this.settings.mapSizeY; row++) {
+            for (int col = 0; col < this.settings.mapSizeX; col++) {
                 GameObject floor = Instantiate(this.floorPrefab) as GameObject;
                 floor.transform.position = new Vector3(col * 4 + 2, -2, 36 - row * 4);
                 floor.transform.localScale = new Vector3(4,4,4);

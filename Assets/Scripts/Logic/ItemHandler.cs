@@ -8,9 +8,11 @@ public class ItemHandler : MonoBehaviour {
         Wand
     }
     public Item item;
+    public AudioClip sound;
 
 	void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Player") {
+            AudioSource.PlayClipAtPoint(this.sound, this.transform.position, 5f);
             switch (this.item) {
                 case Item.Battery:
                     other.GetComponent<Player>().decreaseFlashlightPower(-500);
@@ -22,5 +24,9 @@ public class ItemHandler : MonoBehaviour {
                     break;
             }
         }
+    }
+
+    private void PlayThenDestroy() {
+//        this.sound.play
     }
 }
