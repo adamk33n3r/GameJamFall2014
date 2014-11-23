@@ -44,8 +44,8 @@ public class Startup : MonoBehaviour {
                 floor.transform.position = new Vector3(col * 4 + 2, -2, 36 - row * 4);
                 floor.transform.localScale = new Vector3(4,4,4);
             }
-        }Debug.Log (this.settings.GetMap()[1,1]);
-        try {
+        }
+//        try {
             string line;
             StreamReader reader = new StreamReader("Assets/Levels/" + fileName + ".txt");
             using (reader) {
@@ -74,9 +74,9 @@ public class Startup : MonoBehaviour {
                 reader.Close ();
                 return true;
             }
-        } catch (System.Exception ex) {
-            System.Console.WriteLine("{0}\n", ex.Message);
-            return false;
-        }
+//        } catch (System.Exception ex) {
+//            Debug.Log(ex.Message);
+//            return false;
+//        }
     }
 }

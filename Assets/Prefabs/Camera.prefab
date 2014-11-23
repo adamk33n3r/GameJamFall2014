@@ -179,8 +179,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemsToSpawn:
-  - {fileID: 100000, guid: c0557efc1bfbc114690cd4108c97ca2d, type: 2}
-  priorities: 01000000
+  - {fileID: 100010, guid: c7b6b7914e6fb31489ced15ebd920b34, type: 2}
+  - {fileID: 100006, guid: 0ce48e0d625d38c45a47445338d29884, type: 2}
+  priorities: 0100000001000000
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

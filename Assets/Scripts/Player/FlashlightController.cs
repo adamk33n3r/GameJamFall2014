@@ -48,8 +48,6 @@ public class FlashlightController : MonoBehaviour {
                     hit.transform.SendMessage("HitByRaycast", this.gameObject, SendMessageOptions.DontRequireReceiver);
                 }
             }
-        } else {
-            Debug.Log (hitt.transform.name);
         }
     }
 

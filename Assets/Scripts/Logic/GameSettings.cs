@@ -5,7 +5,7 @@ public class GameSettings : MonoBehaviour {
     public int mapSizeX = 20, mapSizeY = 10;
     private bool[,] map;
 
-    void Start() {
+    void Awake() {
         this.map = new bool[this.mapSizeX, this.mapSizeY];
     }
 
@@ -15,5 +15,13 @@ public class GameSettings : MonoBehaviour {
 
     public bool[,] GetMap() {
         return this.map;
+    }
+
+    public void setAmbient(Color color) {
+        RenderSettings.ambientLight = color;
+    }
+
+    public Color getAmbient() {
+        return RenderSettings.ambientLight;
     }
 }

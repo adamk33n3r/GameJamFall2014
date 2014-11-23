@@ -4,4 +4,5 @@ using System.Collections;
 public class PlayerInfo : MonoBehaviour {
     public bool controlsEnabled = true;
     public int flashlightPower = 1000;
+    public bool nightVision = false;
 }

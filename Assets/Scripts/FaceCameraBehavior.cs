@@ -5,7 +5,8 @@ public class FaceCameraBehavior : MonoBehaviour {
     private Transform sprite;
     
     void Start () {
-        this.sprite = this.transform.FindChild("Sprite");
+        Transform baseTrans = this.transform.FindChild("Sprite");
+        this.sprite = baseTrans ? baseTrans : this.transform.GetChild(0).FindChild("Sprite");
     }
 
 	void Update () {

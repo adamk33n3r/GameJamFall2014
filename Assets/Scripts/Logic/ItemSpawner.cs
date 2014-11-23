@@ -17,7 +17,7 @@ public class ItemSpawner : MonoBehaviour {
 	}
 
     void Attempt() {
-        GameObject itemToSpawn = this.itemsToSpawn[Random.Range(0, this.itemsToSpawn.Length - 1)];
+        GameObject itemToSpawn = this.itemsToSpawn[Random.Range(1, this.itemsToSpawn.Length)];
         int ranX, ranY;
         do {
             ranX = Random.Range (0, this.settings.mapSizeX);
