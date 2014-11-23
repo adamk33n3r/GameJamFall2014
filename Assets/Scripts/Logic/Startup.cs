@@ -4,6 +4,8 @@ using System.IO;
 
 public class Startup : MonoBehaviour {
 
+    public GameObject playerPrefab;
+    public GameObject ghostPrefab;
     public GameObject wallPrefab;
     public GameObject floorPrefab;
     public GameObject lampPrefab;
@@ -13,6 +15,12 @@ public class Startup : MonoBehaviour {
 
     private GameSettings settings;
 
+    void Awake() {
+        for (int i = 0; i < Input.GetJoystickNames().Length + 1; i++) {
+            GameObject player = Instantiate(playerPrefab) as GameObject;
+            player.GetComponent<Player>().playerNum = i + 1;
+        }
+    }
 	// Use this for initialization
 	void Start () {
         this.settings = GameObject.FindObjectOfType<GameSettings>();
@@ -23,6 +31,8 @@ public class Startup : MonoBehaviour {
         }
         PlaceButtons();
         SetUpLights();
+
+
 	}
 
     private void SetUpLights() {

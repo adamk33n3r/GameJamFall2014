@@ -10,16 +10,32 @@ public class Player : MonoBehaviour {
 
     private Color oldColor, newColor;
 
+    private bool onButton = false;
+    private float buttonTime = 0;
+
+    public int playerNum;
+
 	// Use this for initialization
 	void Start () {
         this.flashlight = this.transform.FindChild("Flashlight");
         this.playerSettings = this.GetComponent<PlayerInfo>();
         this.gameSettings = GameObject.FindObjectOfType<GameSettings>();
     }
+
+    void Update() {
+        this.onButton = Physics.CheckSphere(this.transform.position, 2, buttonLayer);
+        if (this.onButton)
+            this.buttonTime += Time.deltaTime;
+        else {
+            this.buttonTime = 0;
+        }
+    }
 	
 	void FixedUpdate () {
         if (Physics.CheckSphere(this.transform.position, 1, this.deathLayer)) {
-//            this.playerSettings.controlsEnabled = false;
+            if (!this.gameSettings.nodie) {
+                this.playerSettings.controlsEnabled = false;
+            }
         }
 	}
 
@@ -69,6 +85,6 @@ public class Player : MonoBehaviour {
     }
 
     public bool OnButton () {
-        return Physics.CheckSphere(this.transform.position, 2, buttonLayer);
+        return this.onButton && this.buttonTime > 5;
     }
 }

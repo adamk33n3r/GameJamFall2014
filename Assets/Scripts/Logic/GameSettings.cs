@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class GameSettings : MonoBehaviour {
     public int mapSizeX = 20, mapSizeY = 10;
+    public bool nodie = false;
     private bool[,] map;
     private int playerCount;
 

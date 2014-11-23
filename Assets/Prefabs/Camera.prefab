@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400006}
   - 114: {fileID: 11400004}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: Logic
   m_TagString: Untagged
@@ -135,6 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bfbe50238c8e1d45bd9530ab4f11fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 100000, guid: ef2e2a4e4a9d1e741b71f40491ae2916, type: 2}
+  ghostPrefab: {fileID: 100000, guid: d4c7229c405e8a6429ccf0ff71c13201, type: 2}
   wallPrefab: {fileID: 100000, guid: cc8423b80a2d3544fbaa6305e35160ea, type: 2}
   floorPrefab: {fileID: 100000, guid: ad6be9a4533753f4689b0e800fab1b6e, type: 2}
   lampPrefab: {fileID: 100000, guid: d44e9e0d29152e64faa3f0b44a0cf27c, type: 2}
@@ -168,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapSizeX: 20
   mapSizeY: 10
+  nodie: 0
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -185,6 +189,17 @@ MonoBehaviour:
   priorities:
   - 1
   - .200000003
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a712edb2b055c04bba08713ee2aa836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

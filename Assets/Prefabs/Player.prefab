@@ -367,6 +367,7 @@ MonoBehaviour:
   buttonLayer:
     serializedVersion: 2
     m_Bits: 8192
+  playerNum: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1

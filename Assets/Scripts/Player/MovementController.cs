@@ -16,7 +16,10 @@ public class MovementController : MonoBehaviour {
     private Vector3 moveDir = Vector3.zero;
     private bool controlsEnabled;
 
+    private Player player;
+
 	void Start () {
+        this.player = this.GetComponent<Player>();
         this.controller = this.gameObject.GetComponent<CharacterController>();
         this.sprite = this.transform.FindChild("Sprite");
         this.controlsEnabled = this.GetComponent<PlayerInfo>().controlsEnabled;
@@ -30,8 +33,8 @@ public class MovementController : MonoBehaviour {
     void Move() {
         float hor, vert;
         if (this.controlsEnabled) {
-            hor = Input.GetAxis("Horizontal");
-            vert = Input.GetAxis("Vertical");
+            hor = this.player.playerNum == 1 ? Input.GetAxis("KeyHorizontal") : Input.GetAxis("JoyHorizontal");
+            vert = this.player.playerNum == 1 ? Input.GetAxis("KeyVertical") : Input.GetAxis("JoyVertical");
             this.facing = hor == 0 ? this.facing : Mathf.Sign(hor);
             this.sprite.transform.localScale = new Vector3(this.facing, 1, 1);
 
@@ -53,7 +56,7 @@ public class MovementController : MonoBehaviour {
         this.vSpeed -= this.gravity * Time.deltaTime;
         moveDir = new Vector3(Mathf.Abs(hor) > 0.1f ? hor : 0, vSpeed, Mathf.Abs (vert) > 0.1f ? vert : 0);
         //moveDir = transform.TransformDirection(moveDir);
-        moveDir *= Input.GetAxis("Xbox360ControllerTriggers") < 0 ? this.flashlightSpeed : this.speed;
+        moveDir *= (this.player.playerNum == 2 && Input.GetAxis("Xbox360ControllerTriggers") < 0) || (this.player.playerNum == 1 && Input.GetMouseButton(0)) ? this.flashlightSpeed : this.speed;
         moveDir.y = vSpeed;
         this.controller.Move(moveDir * Time.deltaTime);
     }

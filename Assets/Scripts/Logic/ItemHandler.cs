@@ -25,8 +25,4 @@ public class ItemHandler : MonoBehaviour {
             }
         }
     }
-
-    private void PlayThenDestroy() {
-//        this.sound.play
-    }
 }
